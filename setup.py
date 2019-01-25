@@ -7,5 +7,8 @@ setup(
     license='None',
     long_description=open('README.md').read(),
     test_suite='nose.collector',
-    tests_require=['nose']
+    tests_require=['nose'],
+    install_requires=[
+        
+    ]
 )
