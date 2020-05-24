@@ -91,8 +91,8 @@ class TestConfigAndSecrets(unittest.TestCase):
     def test_get_config(self):
         self.assertEqual(type(get_config()), dict)
 
-    def test_get_settings(self):
-        self.assertEqual(type(get_secrets()), dict)
+    # def test_get_settings(self):
+    #     self.assertEqual(type(get_secrets()), dict)
 
 if __name__ == '__main__':
     unittest.main()

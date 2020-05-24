@@ -9,6 +9,8 @@ setup(
     test_suite='nose.collector',
     tests_require=['nose'],
     install_requires=[
-        
+        "boto3",
+        "hvac",
+        "psutil",
     ]
 )
