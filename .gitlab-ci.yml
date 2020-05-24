@@ -1,11 +1,5 @@
 image: python3
 
-variables:
-  DOCKER_TLS_CERTDIR: "/certs"
-
-services:
-  - docker:19.03.8-dind
-
 build:
   stage: build
   script:
