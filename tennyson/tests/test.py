@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 import unittest, os, tempfile
+from click.testing import CliRunner
 
 from tennyson import *
+import tennyson.cli
 
 class TestPrinting(unittest.TestCase):
 
@@ -19,7 +21,7 @@ class TestPrinting(unittest.TestCase):
 
     def test_atomic_write(self):
         pass
-    
+
 
 class TestEmail(unittest.TestCase):
 
@@ -93,6 +95,15 @@ class TestConfigAndSecrets(unittest.TestCase):
 
     # def test_get_settings(self):
     #     self.assertEqual(type(get_secrets()), dict)
+
+class TestCLI(unittest.TestCase):
+
+    def test_entry_point(self):
+        runner = CliRunner()
+        result = runner.invoke(tennyson.cli.main, ['--help'])
+        assert result.exit_code == 0
+        result = runner.invoke(tennyson.cli.main, ['password'])
+        assert result.exit_code == 0
 
 if __name__ == '__main__':
     unittest.main()

@@ -10,7 +10,9 @@ setup(
     tests_require=['nose'],
     install_requires=[
         "boto3",
+        "clink",
         "hvac",
         "psutil",
-    ]
+    ],
+    scripts=['bin/tennyson']
 )
