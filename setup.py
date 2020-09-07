@@ -7,10 +7,10 @@ setup(
     license='None',
     long_description=open('README.md').read(),
     test_suite='nose.collector',
-    tests_require=['nose', 'clink'],
+    tests_require=['nose'],
     install_requires=[
         "boto3",
-        "clink",
+        "click",
         "hvac",
         "psutil",
     ],
