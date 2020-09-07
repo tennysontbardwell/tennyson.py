@@ -1,4 +1,4 @@
 #!/usr/bin/env python3
 
-import tennyson
-tennyson.cml.main()
+import tennyson.cli
+tennyson.cli.main()

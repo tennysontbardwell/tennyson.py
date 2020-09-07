@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='tennyson',
-    version='0.0.1',
+    version='0.0.2',
     packages=['tennyson',],
     license='None',
     long_description=open('README.md').read(),
@@ -14,5 +14,5 @@ setup(
         "hvac",
         "psutil",
     ],
-    scripts=['bin/tennyson']
+    scripts=['tennyson/bin/tennyson']
 )
