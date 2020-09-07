@@ -14,5 +14,6 @@ setup(
         "hvac",
         "psutil",
     ],
+    include_package_data=True,
     scripts=['tennyson/bin/tennyson']
 )

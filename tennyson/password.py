@@ -1,10 +1,9 @@
 import os
 from random import SystemRandom
+import pkg_resources
 
 def words():
-    path = os.path.join(os.path.dirname(__file__), 'resources', 'diceware.txt')
-    with open(path, 'r') as f:
-        return [line.strip() for line in f.readlines()]
+    return pkg_resources.resource_string('tennyson', 'static/diceware.txt').decode('utf-8').splitlines()
 
 def password():
     words_ = words()

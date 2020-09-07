@@ -4,6 +4,7 @@ from click.testing import CliRunner
 
 from tennyson import *
 import tennyson.cli
+import tennyson.password
 
 class TestPrinting(unittest.TestCase):
 
@@ -69,7 +70,7 @@ class TestSafty(unittest.TestCase):
     #         pass
     #     except TimeoutException:
     #         pass
-        
+
 
 class TestCommon(unittest.TestCase):
 
@@ -95,6 +96,11 @@ class TestConfigAndSecrets(unittest.TestCase):
 
     # def test_get_settings(self):
     #     self.assertEqual(type(get_secrets()), dict)
+
+class TestPassword(unittest.TestCase):
+
+    def test_password(self):
+        tennyson.password.password()
 
 class TestCLI(unittest.TestCase):
 
