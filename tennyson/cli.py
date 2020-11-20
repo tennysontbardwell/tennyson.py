@@ -11,4 +11,5 @@ def main():
 
 @main.command()
 def password():
-    print(tennyson.password.password())
+    for p in tennyson.password.for_display_passwords():
+        print(p)
