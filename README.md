@@ -3,25 +3,18 @@ tennyson.py
 
 Collection of helpful functions by Tennyson T Bardwell
 
-Important Notes
----------------
-
-- is public
-- https://pypi.org/project/tennyson/
-
 Development
 -----------
 
-### Helpful Commands ###
-
-```bash
-sudo pip install .     # install package
-python3 setup.py test  # test package
-python3 setup.py build # builds package
-python3 setup.py sdist bdist_wheel && twine upload dist/* # distributes package
-```
+This project has a `shell.nix` for development. A `Makefile` acts as the initial
+interface for all commands, and uses the `shell.nix` under the hood.
 
 ### TODO ###
 
 - graceful handling of email errors if no network
 
+Links
+------
+
+- https://github.com/tennysontbardwell/tennyson.py
+- https://pypi.org/project/tennyson/

@@ -1,11 +1,13 @@
 import os
 from random import SystemRandom
-import pkg_resources
 import functools
+from importlib.resources import files
 
 @functools.lru_cache()
 def words():
-    return pkg_resources.resource_string('tennyson', 'static/diceware.txt').decode('utf-8').splitlines()
+    f = files("tennyson").joinpath('static/diceware.txt')
+    words = f.read_text().splitlines()
+    return words
 
 upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 lower = 'abcdefghijklmnopqrstuvwxyz'

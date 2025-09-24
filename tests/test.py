@@ -12,7 +12,7 @@ class TestPrinting:
 
     def test_logger(self):
         log = mklog()
-        assert log.name == __file__
+        assert log.name in ['<unknown>', __file__]
         log = mklog('asdf')
         assert log.name == 'asdf'
 

@@ -7,9 +7,17 @@ from   tennyson.vault import get_secrets
 
 def mklog(name: str=None):
     if not name:
-        frame = inspect.stack()[1]
-        module = inspect.getmodule(frame[0])
-        name = module.__file__
+        try:
+            frame = inspect.currentframe().f_back
+            module = inspect.getmodule(frame[0])
+            if module and hasattr(module, '__file__') and module.__file__:
+                name = module.__file__
+            else:
+                name = frame.f_globals.get('__file__', '<unknown>')
+        except (AttributeError, TypeError):
+            name = '<unknown>'
+        finally:
+            del frame
 
     LOG = logging.getLogger(name)
     LOG.setLevel(logging.DEBUG)

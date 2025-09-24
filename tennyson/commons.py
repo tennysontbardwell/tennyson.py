@@ -31,3 +31,8 @@ def encrypt_pipe(file_obj, pipe):
                     stdin=pipe, stdout=file_obj)
     encrypt.wait()
 
+def sh(cmd):
+    import subprocess
+    result = subprocess.run(
+        cmd, shell=True, check=True, capture_output=True, text=True)
+    return result.stdout

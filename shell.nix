@@ -8,13 +8,20 @@ in
 
 pkgs.mkShellNoCC {
   packages = with pkgs; [
+    automake
+
     (pkgs.python3.withPackages (
       ps: with ps; [
         boto3
         click
         hvac
         psutil
+
+        # dev
+        build
         pytest
+        setuptools
+        twine
       ]
     ))
   ];
