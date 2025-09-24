@@ -7,6 +7,7 @@ Important Notes
 ---------------
 
 - is public
+- https://pypi.org/project/tennyson/
 
 Development
 -----------

@@ -1,30 +1,31 @@
 #!/usr/bin/env python3
-import unittest, os, tempfile
+import os
+import tempfile
 from click.testing import CliRunner
 
 from tennyson import *
 import tennyson.cli
 import tennyson.password
 
-class TestPrinting(unittest.TestCase):
+
+class TestPrinting:
 
     def test_logger(self):
         log = mklog()
-        self.assertEqual(log.name, __file__)
+        assert log.name == __file__
         log = mklog('asdf')
-        self.assertEqual(log.name,'asdf')
+        assert log.name == 'asdf'
 
     def test_timestamps_run(self):
         date_stamp()
         datetime_stamp()
         datetime_zone_stamp()
 
-
     def test_atomic_write(self):
         pass
 
 
-class TestEmail(unittest.TestCase):
+class TestEmail:
 
     def test_email(self):
         if os.environ.get('TEST_SEND_EMAILS', False):
@@ -37,7 +38,7 @@ class TestEmail(unittest.TestCase):
                 error_email_exn(e)
 
 
-class TestSafty(unittest.TestCase):
+class TestSafety:
 
     def test_atomic_write(self):
         with tempfile.TemporaryDirectory() as dir_:
@@ -47,22 +48,22 @@ class TestSafty(unittest.TestCase):
             with open_atomic(a, 'w') as fp:
                 fp.write('abc')
             with open(a) as fp:
-                self.assertEqual(fp.read(), 'abc')
+                assert fp.read() == 'abc'
 
             try:
                 with open_atomic(b, 'w') as fp:
                     fp.write('abc')
                     raise RuntimeError()
             except RuntimeError:
-                self.assertFalse(os.path.isfile(b))
-            
+                assert not os.path.isfile(b)
+
             try:
                 with open_atomic(a, 'w') as fp:
                     fp.write('xyz')
                     raise RuntimeError()
             except RuntimeError:
                 with open(a) as fp:
-                    self.assertEqual(fp.read(), 'abc')
+                    assert fp.read() == 'abc'
 
     # def test_time_limit(self):
     #     time_limit()
@@ -72,37 +73,39 @@ class TestSafty(unittest.TestCase):
     #         pass
 
 
-class TestCommon(unittest.TestCase):
+class TestCommon:
 
     def test_mkdir_p(self):
         with tempfile.TemporaryDirectory() as dir_:
             d = os.path.join(dir_, 'a', 'b', 'c', 'd')
-            self.assertFalse(os.path.isdir(d))
+            assert not os.path.isdir(d)
             mkdir_p(d)
-            self.assertTrue(os.path.isdir(d))
+            assert os.path.isdir(d)
 
     def test_json(self):
         with tempfile.TemporaryDirectory() as dir_:
             f = os.path.join(dir_, 'a.json')
             o = ['a', 'b']
             j_dump(o, f)
-            self.assertEqual(j_load(f), o)
+            assert j_load(f) == o
 
 
-class TestConfigAndSecrets(unittest.TestCase):
+class TestConfigAndSecrets:
 
     def test_get_config(self):
-        self.assertEqual(type(get_config()), dict)
+        assert type(get_config()) == dict
 
     # def test_get_settings(self):
-    #     self.assertEqual(type(get_secrets()), dict)
+    #     assert type(get_secrets()) == dict
 
-class TestPassword(unittest.TestCase):
+
+class TestPassword:
 
     def test_password(self):
         tennyson.password.password()
 
-class TestCLI(unittest.TestCase):
+
+class TestCLI:
 
     def test_entry_point(self):
         runner = CliRunner()
@@ -110,6 +113,3 @@ class TestCLI(unittest.TestCase):
         assert result.exit_code == 0
         result = runner.invoke(tennyson.cli.main, ['password'])
         assert result.exit_code == 0
-
-if __name__ == '__main__':
-    unittest.main()

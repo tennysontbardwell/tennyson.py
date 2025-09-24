@@ -3,17 +3,23 @@ from setuptools import setup
 setup(
     name='tennyson',
     version='0.0.2',
-    packages=['tennyson',],
+    packages=['tennyson', 'tennyson.static'],
     license='None',
     long_description=open('README.md').read(),
-    test_suite='nose.collector',
-    tests_require=['nose'],
     install_requires=[
         "boto3",
         "click",
         "hvac",
         "psutil",
     ],
+    extras_require={
+        'dev': ['pytest'],
+        'test': ['pytest'],
+    },
     include_package_data=True,
-    scripts=['tennyson/bin/tennyson']
+    entry_points={
+        'console_scripts': [
+            'tennyson=tennyson.cli:main',
+        ],
+    },
 )
